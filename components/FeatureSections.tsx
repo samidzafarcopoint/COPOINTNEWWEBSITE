@@ -2,12 +2,25 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Zap, BarChart3, Code, CheckCircle } from 'lucide-react';
+import Lottie from 'lottie-react';
 
 export default function FeatureSections() {
   const [isVisible, setIsVisible] = useState({ compute: false, throughput: false, sdk: false });
+  const [animationData, setAnimationData] = useState(null);
+  const [animationData2, setAnimationData2] = useState(null);
+  const [animationData3, setAnimationData3] = useState(null);
   const computeRef = useRef<HTMLDivElement>(null);
   const throughputRef = useRef<HTMLDivElement>(null);
   const sdkRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    fetch('/lotties/hero_animation.json')
+      .then((res) => res.json())
+      .then(setAnimationData);
+    fetch('/lotties/heri_animation2.json')
+      .then((res) => res.json())
+      .then(setAnimationData2);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,6 +42,12 @@ export default function FeatureSections() {
     });
 
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    fetch('/lotties/hero_animation3.json')
+      .then((res) => res.json())
+      .then(setAnimationData3);
   }, []);
 
   const codeSnippet = `import { AIClient } from '@ai-solutions/sdk';
@@ -57,24 +76,23 @@ const result = await model.predict({
         data-section="compute"
         className="bg-white py-24"
       >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className={`transition-all duration-1000 ${isVisible.compute ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[480px]">
+            <div className={`transition-all duration-1000 ${isVisible.compute ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'} flex flex-col justify-center h-full`}>
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
                   <Zap className="w-6 h-6 text-[#4B9EDC]" />
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Lightning-Fast Compute</h2>
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900"> Accelerate Innovation through Data & AI </h2>
               </div>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed font-light">
-                Experience unprecedented speed with our distributed GPU clusters. 
-                Process massive datasets and train complex models in minutes, not hours.
+              We craft bespoke AI roadmaps that align with your unique business objectives—so you move forward with clarity, confidence, and a clear path to value. 
               </p>
               <div className="space-y-4 mb-8">
                 {[
-                  '10x faster model training',
-                  'Auto-scaling infrastructure',
-                  '99.9% uptime guarantee'
+                  'Your AI Blueprint',
+                  'Blueprint to Success',
+                  'Stratergised, Simplified, Scalable'
                 ].map((feature, index) => (
                   <div key={index} className="flex items-center">
                     <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
@@ -87,20 +105,11 @@ const result = await model.predict({
               </button>
             </div>
             
-            <div className={`transition-all duration-1000 delay-300 ${isVisible.compute ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl border border-blue-100">
-                <div className="grid grid-cols-3 gap-4">
-                  {[...Array(9)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="bg-white rounded-xl p-4 h-20 shadow-sm border border-gray-100 animate-pulse"
-                      style={{ animationDelay: `${i * 0.1}s` }}
-                    >
-                      <div className="w-full h-2 bg-blue-200 rounded mb-2"></div>
-                      <div className="w-3/4 h-2 bg-gray-200 rounded"></div>
-                    </div>
-                  ))}
-                </div>
+            <div className={`transition-all duration-1000 delay-300 ${isVisible.compute ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'} flex items-center justify-center h-full`}>
+              <div className="flex items-center justify-center w-full h-full">
+                {animationData && (
+                  <Lottie animationData={animationData} loop={true} className="w-full max-w-lg h-auto" />
+                )}
               </div>
             </div>
           </div>
@@ -113,48 +122,25 @@ const result = await model.predict({
         data-section="throughput"
         className="bg-gray-50 py-24"
       >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className={`order-2 lg:order-1 transition-all duration-1000 ${isVisible.throughput ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                <h4 className="text-lg font-semibold mb-6 text-gray-900">Performance Metrics</h4>
-                <div className="space-y-6">
-                  {[
-                    { label: 'Requests/Second', value: 98, color: '#4B9EDC' },
-                    { label: 'Data Processing', value: 85, color: '#123D6A' },
-                    { label: 'Model Accuracy', value: 94, color: '#4B9EDC' },
-                    { label: 'Response Time', value: 78, color: '#123D6A' }
-                  ].map((metric, index) => (
-                    <div key={metric.label}>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-sm font-medium text-gray-700">{metric.label}</span>
-                        <span className="text-sm font-bold text-gray-900">{metric.value}%</span>
-                      </div>
-                      <div className="bg-gray-200 rounded-full h-2">
-                        <div
-                          className={`h-2 rounded-full transition-all duration-1000 delay-${index * 200}`}
-                          style={{
-                            backgroundColor: metric.color,
-                            width: isVisible.throughput ? `${metric.value}%` : '0%'
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[480px]">
+            <div className={`order-2 lg:order-1 transition-all duration-1000 ${isVisible.throughput ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'} flex items-center justify-center h-full`}>
+              <div className="flex items-center justify-center w-full h-full">
+                {animationData2 && (
+                  <Lottie animationData={animationData2} loop={true} className="w-full max-w-lg h-auto" />
+                )}
               </div>
             </div>
 
-            <div className={`order-1 lg:order-2 transition-all duration-1000 ${isVisible.throughput ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+            <div className={`order-1 lg:order-2 transition-all duration-1000 ${isVisible.throughput ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'} flex flex-col justify-center h-full`}>
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
                   <BarChart3 className="w-6 h-6 text-[#4B9EDC]" />
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Unrivaled Throughput</h2>
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900">Deliver Tangible AI Wins</h2>
               </div>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed font-light">
-                Handle millions of concurrent requests with our optimized infrastructure. 
-                Scale seamlessly from startup to enterprise without missing a beat.
+              We deliver tangible AI wins that drive measurable business impact. From predictive analytics to intelligent automation, our solutions are designed to deliver results that matter.
               </p>
               <button className="bg-[#123D6A] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#0f2d56] transition-all duration-200 hover:scale-105 hover:shadow-lg">
                 View Performance Specs
@@ -170,39 +156,32 @@ const result = await model.predict({
         data-section="sdk"
         className="bg-white py-24"
       >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className={`transition-all duration-1000 ${isVisible.sdk ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[480px]">
+            <div className={`transition-all duration-1000 ${isVisible.sdk ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'} flex flex-col justify-center h-full`}>
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
                   <Code className="w-6 h-6 text-[#4B9EDC]" />
                 </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Developer-First SDK</h2>
+                <h2 className="text-2xl md:text-2xl font-bold text-gray-900   ">AI Ecosystem Experts</h2>
               </div>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed font-light">
-                Integrate seamlessly with our developer-friendly SDK. 
-                Drop-in replacement for existing OpenAI implementations with enhanced performance.
+              We are AI ecosystem experts, with a deep understanding of the latest AI technologies and how to apply them to your business.
               </p>
               <button className="bg-[#123D6A] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#0f2d56] transition-all duration-200 hover:scale-105 hover:shadow-lg">
                 View API Docs
               </button>
             </div>
             
-            <div className={`transition-all duration-1000 delay-300 ${isVisible.sdk ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <div className="bg-gray-900 rounded-2xl p-6 shadow-xl border border-gray-800">
-                <div className="flex items-center mb-4">
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  </div>
-                  <span className="ml-4 text-gray-400 text-sm">ai-solutions-sdk.js</span>
-                </div>
-                <pre className="text-sm text-gray-300 overflow-x-auto">
-                  <code className="language-javascript">
-                    {codeSnippet}
-                  </code>
-                </pre>
+            <div className={`transition-all duration-1000 delay-300 ${isVisible.sdk ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'} flex items-center justify-center h-full`}>
+              <div className="flex items-center justify-center w-full h-full">
+                {animationData3 && (
+                  <Lottie 
+                    animationData={animationData3} 
+                    loop={true} 
+                    className="w-full max-w-[400px] h-auto max-h-[400px] mx-auto"
+                  />
+                )}
               </div>
             </div>
           </div>

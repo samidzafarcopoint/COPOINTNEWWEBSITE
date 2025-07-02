@@ -1,0 +1,26 @@
+[
+  {
+    "step": 1,
+    "title": "Strategize",
+    "description": "We kick off by deeply aligning with your business objectives—defining clear success metrics and pinpointing how AI and data analytics can unlock new opportunities and drive measurable growth.",
+    "icon": "FaLightbulb"
+  },
+  {
+    "step": 2,
+    "title": "Implement",
+    "description": "Our AI and data engineering specialists architect and build tailored solutions—selecting best-in-class tools to ensure rapid deployment and tangible value from day one.",
+    "icon": "FaCogs"
+  },
+  {
+    "step": 3,
+    "title": "Transition",
+    "description": "We empower your teams through hands-on training, documentation, and knowledge transfer—so you can seamlessly take ownership and sustain momentum without external dependency.",
+    "icon": "FaUsers"
+  },
+  {
+    "step": 4,
+    "title": "Support",
+    "description": "With our global delivery model, we provide 24/7 monitoring, maintenance, and iterative enhancements—keeping your AI and data platforms robust, secure, and continuously evolving.",
+    "icon": "FaLifeRing"
+  }
+]

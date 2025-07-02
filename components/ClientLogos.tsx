@@ -3,7 +3,46 @@
 import { useEffect, useRef } from 'react';
 
 const logos = [
-  'OpenTable', 'Vimeo', 'Amazon', 'NVIDIA', 'Microsoft', 'Google', 'Tesla', 'Meta'
+  {
+    name: 'CVS',
+    src: '/logos/csv.png',
+  },
+  {
+    name: 'Kaiser Permanente',
+    src: '/logos/kaiser.png',
+  },
+  {
+    name: 'Wells Fargo',
+    src: '/logos/wellsfargo.png',
+  },
+  {
+    name: 'Goldman Sachs',
+    src: '/logos/goldman.png',
+  },
+  {
+    name: 'Franklin Templeton',
+    src: '/logos/franklin.png',
+  },
+  {
+    name: 'Discover',
+    src: '/logos/discover.jpg',
+  },
+  {
+    name: 'Bon Secours Mercy Health',
+    src: '/logos/bonsecours.svg',
+  },
+  {
+    name: 'Singtel',
+    src: '/logos/singtel.svg',
+  },
+  {
+    name: 'Mastercard',
+    src: '/logos/mastercard.png',
+  },
+  {
+    name: 'AT&T',
+    src: '/logos/att.svg',
+  },
 ];
 
 export default function ClientLogos() {
@@ -17,7 +56,7 @@ export default function ClientLogos() {
     let scrollPos = 0;
 
     const scroll = () => {
-      scrollPos += 0.3;
+      scrollPos += 0.5; // slightly faster for a premium feel
       if (scrollPos >= scrollWidth) {
         scrollPos = 0;
       }
@@ -29,24 +68,28 @@ export default function ClientLogos() {
   }, []);
 
   return (
-    <section className="bg-gray-50 py-16 border-y border-gray-100">
+    <section className="bg-white py-20">
       <div className="max-w-7xl mx-auto px-6">
-        <h3 className="text-center text-gray-500 text-sm font-medium uppercase tracking-wider mb-12">
+        <h3 className="text-center text-[#13294b] text-lg font-semibold uppercase tracking-wider mb-12">
           Trusted by Industry Leaders
         </h3>
-        
-        <div 
+        <div
           ref={scrollRef}
           className="overflow-hidden whitespace-nowrap"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          <div className="inline-flex space-x-16">
+          <div className="inline-flex space-x-12 md:space-x-16">
             {[...logos, ...logos].map((logo, index) => (
               <div
                 key={index}
-                className="inline-flex items-center justify-center min-w-[180px] h-12 text-gray-400 text-lg font-semibold hover:text-gray-600 transition-colors duration-300"
+                className="inline-flex items-center justify-center bg-white rounded-xl shadow-sm p-6 h-28 w-[180px] transition-all duration-300 hover:shadow-lg hover:-translate-y-2 group mx-2"
               >
-                {logo}
+                <img
+                  src={logo.src}
+                  alt={logo.name}
+                  className="max-h-12 max-w-[120px] group-hover:scale-105 transition-all duration-300"
+                  style={{ objectFit: 'contain' }}
+                />
               </div>
             ))}
           </div>

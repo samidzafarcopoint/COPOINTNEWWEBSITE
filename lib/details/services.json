@@ -1,0 +1,23 @@
+[
+  {
+    "icon": "Brain",
+    "title": "AI Strategy & Consulting",
+    "description": "We put human intelligence into AI, helping organizations implement practical solutions that deliver tangible business value and measurable outcomes.",
+    "features": ["AI strategy and roadmap development", "Machine learning model development", "AI-powered process automation"],
+    "link": "#"
+  },
+  {
+    "icon": "Database",
+    "title": "Data Management",
+    "description": "We help organizations consolidate, organize, and govern their data assets to create a solid foundation for analytics and AI initiatives.",
+    "features": ["Data integration and consolidation", "Data quality and governance", "Data warehousing and lake solutions"],
+    "link": "#"
+  },
+  {
+    "icon": "Lightbulb",
+    "title": "Ongoing Support",
+    "description": "Our global footprint allows us to deliver ongoing support solutions that follow the sun. We provide continuous monitoring, optimization, and enhancement of your AI and data solutions to ensure they continue delivering value as your business evolves.",
+    "features": ["24/7 global support coverage", "Performance monitoring and optimization", "Continuous improvement and enhancement"],
+    "link": "#"
+  }
+] 

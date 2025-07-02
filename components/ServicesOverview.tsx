@@ -1,32 +1,16 @@
 'use client';
 
 import { Brain, Database, Lightbulb, ArrowRight } from 'lucide-react';
+import services from '@/lib/details/services.json';
+import React from 'react';
+
+const iconMap = {
+  Brain,
+  Database,
+  Lightbulb,
+};
 
 export default function ServicesOverview() {
-  const services = [
-    {
-      icon: Brain,
-      title: "Custom ML Models & MLOps",
-      description: "End-to-end machine learning solutions tailored to your business needs with automated deployment pipelines.",
-      features: ["Custom Model Development", "MLOps Pipeline", "Performance Monitoring"],
-      link: "#"
-    },
-    {
-      icon: Database,
-      title: "Data Engineering & Pipelines",
-      description: "Robust data infrastructure and ETL pipelines that transform raw data into actionable business intelligence.",
-      features: ["Data Pipeline Design", "Real-time Processing", "Data Quality Assurance"],
-      link: "#"
-    },
-    {
-      icon: Lightbulb,
-      title: "AI Strategy & Consulting",
-      description: "Strategic guidance to identify AI opportunities and develop comprehensive implementation roadmaps.",
-      features: ["AI Readiness Assessment", "Implementation Strategy", "ROI Optimization"],
-      link: "#"
-    }
-  ];
-
   return (
     <section id="services" className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-6">
@@ -52,7 +36,11 @@ export default function ServicesOverview() {
               className="group bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer hover:border-[#4B9EDC]"
             >
               <div className="w-16 h-16 bg-blue-50 rounded-2xl mb-6 flex items-center justify-center group-hover:bg-[#4B9EDC] transition-colors duration-300">
-                <service.icon className="w-8 h-8 text-[#4B9EDC] group-hover:text-white transition-colors duration-300" />
+                {iconMap[service.icon as keyof typeof iconMap] && (
+                  React.createElement(iconMap[service.icon as keyof typeof iconMap], {
+                    className: "w-8 h-8 text-[#4B9EDC] group-hover:text-white transition-colors duration-300"
+                  })
+                )}
               </div>
               
               <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[#4B9EDC] transition-colors duration-300">

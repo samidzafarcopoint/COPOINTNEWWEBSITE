@@ -2,6 +2,7 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import ClientLogos from '@/components/ClientLogos';
 import FeatureSections from '@/components/FeatureSections';
+import ProcessSection from '@/components/process-detail-section';
 import ServicesOverview from '@/components/ServicesOverview';
 import Testimonials from '@/components/Testimonials';
 import BlogTeaser from '@/components/BlogTeaser';
@@ -14,6 +15,7 @@ export default function Home() {
       <HeroSection />
       <ClientLogos />
       <FeatureSections />
+      <ProcessSection />
       <ServicesOverview />
       <Testimonials />
       <BlogTeaser />
